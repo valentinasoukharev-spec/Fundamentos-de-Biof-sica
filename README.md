@@ -1,25 +1,16 @@
 # 🧮 Métodos Numéricos en Python
 
-Implementación de métodos numéricos clásicos para **derivación** e **integración** de funciones matemáticas. Incluye tanto aproximación numérica mediante diferencia centrada como integración por la Regla de Simpson con estimación de error.
-
----
-
-## 📁 Archivos
-
-| Archivo | Descripción |
-|---|---|
-| `metodos_numericos.py` | Diferencia centrada + Regla de Simpson |
-| `derivada_exacta.py` | Derivada simbólica exacta con SymPy |
+Implementación de métodos numéricos para **derivación** e **integración** de funciones matemáticas.
 
 ---
 
 ## ⚙️ Requisitos
 
 ```bash
-pip install sympy
+pip install math
 ```
 
-> La librería estándar de Python (`math`) no requiere instalación adicional.
+> `math` forma parte de la librería estándar de Python, no requiere instalación adicional.
 
 ---
 
@@ -74,8 +65,6 @@ donde $h = \dfrac{b - a}{n}$
 
 $$E_T \leq \frac{(b-a)^3}{12n^2} \max_{a \leq x \leq b} |f''(x)|$$
 
-El máximo de |f″(x)| se estima numéricamente sobre una malla interna de 1000 puntos.
-
 ### Parámetros
 
 | Parámetro | Tipo | Descripción |
@@ -113,61 +102,11 @@ print(f"Cota error : {error:.2e}")       # 3.45e-08
 
 ---
 
-## 🔬 Comparación: Numérica vs Exacta
-
-Para casos donde se necesita la derivada **matemáticamente exacta** (sin error de aproximación), se incluye `derivada_exacta.py` basado en cálculo simbólico con [SymPy](https://www.sympy.org/).
-
-```python
-from derivada_exacta import derivada_exacta
-
-# Derivada simbólica → expresión exacta
-derivada_exacta("x**3 + 2*x")           # 3*x**2 + 2
-derivada_exacta("sin(x) * exp(x)")      # sqrt(2)*exp(x)*sin(x + pi/4)
-
-# Evaluada en un punto → valor exacto
-derivada_exacta("log(x**2 + 1)", punto=3)  # (expresión, 3/5)
-
-# Segunda derivada
-derivada_exacta("exp(x)*sin(x)", orden=2)  # 2*exp(x)*cos(x)
-```
-
-| Característica | Diferencia centrada | Simbólica (SymPy) |
-|---|---|---|
-| Tipo de resultado | Número flotante | Expresión matemática |
-| Error | Depende de `h` | Cero (exacta) |
-| Velocidad | Muy rápida | Más lenta |
-| Requiere | Solo `math` | `sympy` |
-| Derivadas de orden n | No | Sí |
-
----
-
-## ▶️ Ejecutar demostraciones
+## ▶️ Ejecutar demostración
 
 ```bash
-# Métodos numéricos (diferencia centrada + Simpson)
 python metodos_numericos.py
-
-# Derivada simbólica exacta
-python derivada_exacta.py
 ```
-
----
-
-## 📐 Fundamentos matemáticos
-
-### ¿Por qué diferencia centrada y no diferencia hacia adelante?
-
-La diferencia hacia adelante tiene error de orden $O(h)$, mientras que la diferencia centrada tiene error de orden $O(h^2)$, lo que la hace significativamente más precisa para el mismo tamaño de paso.
-
-| Método | Fórmula | Error |
-|---|---|---|
-| Hacia adelante | $[f(x+h) - f(x)] / h$ | $O(h)$ |
-| Hacia atrás | $[f(x) - f(x-h)] / h$ | $O(h)$ |
-| **Centrada** | $[f(x+h) - f(x-h)] / 2h$ | $O(h^2)$ |
-
-### ¿Por qué n debe ser par en Simpson?
-
-La Regla de Simpson ajusta parábolas sobre pares de subintervalos consecutivos. Requiere un número par de subintervalos para que los coeficientes 1–4–2–4–2–…–4–1 cierren correctamente.
 
 ---
 
