@@ -88,15 +88,6 @@ resultado, error = integral_simpson(lambda x: 1/x, 1, math.e, 50)
 print(f"Integral   : {resultado:.10f}")  # 1.0000000000
 print(f"Cota error : {error:.2e}")       # 3.45e-08
 ```
-
----
-
-## ▶️ Ejecutar demostración
-
-```bash
-python metodos_numericos.py
-```
-
 ---
 
 ## 📄 Licencia
