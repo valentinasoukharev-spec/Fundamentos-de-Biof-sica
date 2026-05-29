@@ -3,17 +3,6 @@
 Implementación de métodos numéricos para **derivación** e **integración** de funciones matemáticas.
 
 ---
-
-## ⚙️ Requisitos
-
-```bash
-pip install math
-```
-
-> `math` forma parte de la librería estándar de Python, no requiere instalación adicional.
-
----
-
 ## 📌 Función 1 — Derivada por Diferencia Centrada
 
 ### Propósito
